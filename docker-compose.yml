@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  main:
+    container_name: "${APP_NAME}-main"
+    build:
+      context: .
+      target: development
+    volumes:
+      # Allows changes made in the project directory to be accessed by the container and persist.
+      - .:/usr/src/app
+      # Using anonymous volume to prevent the node_modules existing in the container to be overridden by the local version
+      - /usr/src/app/node_modules
+    ports:
+      - ${APP_PORT}:3000
+      - 9229:9229
+    command: npm run start:dev
+    environment:
+      TZ: "${APP_TIMEZONE}"
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - nestjs-notification-network
+    depends_on:
+      - redis
+
+  redis:
+    container_name: "${APP_NAME}-redis"
+    build: .docker/redis
+    ports:
+      - ${REDIS_PORT}:6379
+    networks:
+      - nestjs-notification-network
+
+  # Uncomment for use this service
+  #mysql:
+    #container_name: "${APP_NAME}-mysql"
+    #build: .docker/mysql
+    #command: --innodb-use-native-aio=0 --default-authentication-plugin=mysql_native_password
+    #platform: linux/amd64
+    #restart: always
+    #tty: true
+    #ports:
+      #- ${MYSQL_PORT}:3306
+    #volumes:
+      #- ./.docker/mysql/dbdata:/var/lib/mysql
+      #- ./.docker/mysql/scripts:/docker-entrypoint-initdb.d
+    #environment:
+      #MYSQL_ROOT_PASSWORD: root
+      #MYSQL_DATABASE: ${MYSQL_DATABASE}
+    #networks:
+      #- nestjs-notification-network
+
+  # Uncomment for use this service
+  #postgresql:
+    #container_name: "${APP_NAME}-postgresql"
+    #build: .docker/postgresql
+    #ports:
+      #- ${POSTGRESQL_PORT}:${POSTGRESQL_PORT}
+    #volumes:
+      #- ./.docker/postgresql/dbdata:/var/lib/postgresql/data
+      #- ./.docker/postgresql/scripts:/docker-entrypoint-initdb.d
+    #environment:
+      #POSTGRES_DB: ${POSTGRESQL_DATABASE}
+      #POSTGRES_USER: ${POSTGRESQL_USERNAME}
+      #POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+    #networks:
+      #- nestjs-notification-network
+
+  # Uncomment for use this service
+  #mongodb:
+    #container_name: "${APP_NAME}-mongodb"
+    #build: .docker/mongodb
+    #ports:
+      #- ${MONGODB_PORT}:${MONGODB_PORT}
+    #volumes:
+      #- ./.docker/mongodb/dbdata:/data/db
+      #- ./.docker/mongodb/dbconfig:/data/configdb
+    #environment:
+      #MONGO_INITDB_DATABASE: ${MONGODB_DATABASE}
+      #MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      #MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    #networks:
+      #- nestjs-notification-network
+
+networks:
+  nestjs-notification-network:
+    driver: bridge
