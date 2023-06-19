@@ -1,9 +1,9 @@
 import { randomUUID } from 'node:crypto';
-import { ContentEntity } from './content.entity';
 import { Replace } from '@shared/helpers/replace';
+import { Content } from '@core/value-objects/notification/content';
 
 export interface NotificationProps {
-  content: ContentEntity;
+  content: Content;
   category: string;
   readAt?: Date | null;
   createdAt: Date;
@@ -28,11 +28,11 @@ export class NotificationEntity {
     return this._id;
   }
 
-  public set content(content: ContentEntity) {
+  public set content(content: Content) {
     this.props.content = content;
   }
 
-  public get content(): ContentEntity {
+  public get content(): Content {
     return this.props.content;
   }
 

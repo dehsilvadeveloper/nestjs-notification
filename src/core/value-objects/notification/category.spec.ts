@@ -1,16 +1,16 @@
-import { CategoryEntity } from './category.entity';
+import { Category } from './category';
 import { NotificationCategoryEnum } from '../../../shared/enums/notification-category.enum';
 
-describe('Entity CategoryEntity', () => {
+describe('Value Object Category', () => {
   it('should create', () => {
-    const content = new CategoryEntity(NotificationCategoryEnum.social);
+    const content = new Category(NotificationCategoryEnum.social);
 
     expect(content).toBeTruthy();
   });
 
   it('should not create without characters', () => {
     expect(() => {
-      new CategoryEntity('');
+      new Category('');
     }).toThrow('Category must have at least 1 character');
   });
 
@@ -18,7 +18,7 @@ describe('Entity CategoryEntity', () => {
     const invalidCategoryName = 'gaming';
 
     expect(() => {
-      new CategoryEntity(invalidCategoryName);
+      new Category(invalidCategoryName);
     }).toThrow(`Category name ${invalidCategoryName} is not valid`);
   });
 });

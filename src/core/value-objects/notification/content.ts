@@ -1,4 +1,4 @@
-export class ContentEntity {
+export class Content {
   private readonly content: string;
 
   constructor(content: string) {

@@ -1,7 +1,7 @@
-//import { NotificationCategoryEnum } from '@shared/enums/notification-category.enum';
-import { NotificationCategoryEnum } from '../../../shared/enums/notification-category.enum';
+import { NotificationCategoryEnum } from '@shared/enums/notification-category.enum';
+//import { NotificationCategoryEnum } from '../../../shared/enums/notification-category.enum';
 
-export class CategoryEntity {
+export class Category {
   private readonly category: string;
 
   constructor(category: string) {
