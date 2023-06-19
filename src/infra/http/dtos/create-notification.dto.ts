@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsUUID, Length } from 'class-validator';
+import { IsNotEmpty, IsUUID, Length, IsEnum } from 'class-validator';
+import { NotificationCategoryEnum } from '@shared/enums/notification-category.enum';
 
 export class CreateNotificationDto {
   @IsNotEmpty()
@@ -10,5 +11,6 @@ export class CreateNotificationDto {
   content: string;
 
   @IsNotEmpty()
+  @IsEnum(NotificationCategoryEnum)
   category: string;
 }

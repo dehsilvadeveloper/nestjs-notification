@@ -1,10 +1,11 @@
 import { randomUUID } from 'node:crypto';
 import { Replace } from '@shared/helpers/replace';
+import { Category } from '@core/value-objects/notification/category';
 import { Content } from '@core/value-objects/notification/content';
 
 export interface NotificationProps {
   content: Content;
-  category: string;
+  category: Category;
   readAt?: Date | null;
   createdAt: Date;
   recipientId: string;
@@ -36,11 +37,11 @@ export class NotificationEntity {
     return this.props.content;
   }
 
-  public set category(category: string) {
+  public set category(category: Category) {
     this.props.category = category;
   }
 
-  public get category(): string {
+  public get category(): Category {
     return this.props.category;
   }
 

@@ -1,5 +1,5 @@
 import { Category } from './category';
-import { NotificationCategoryEnum } from '../../../shared/enums/notification-category.enum';
+import { NotificationCategoryEnum } from '@shared/enums/notification-category.enum';
 
 describe('Value Object Category', () => {
   it('should create', () => {
