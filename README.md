@@ -42,7 +42,7 @@ The project was created to learn development with NestJS.
 
 Next development actions
 
-* [ ] Adjust dependencies import (tsconfig paths not working properly in some cases)
+* [X] Adjust dependencies import (tsconfig paths not working properly in jest tests)
 * [ ] Implement mappers (from Prisma to Entity, from Entity to Prisma)
 * [ ] Implement create notification flow (controller, use-case, etc)
 * [ ] Implement cancel notification flow (controller, use-case, etc)

@@ -20,7 +20,7 @@ describe('Usecase SendNotificationUseCase', () => {
     expect(response).toBeTruthy();
     expect(response.notification.recipientId).toEqual(request.recipientId);
     expect(response.notification.content.value).toEqual(request.content);
-    expect(response.notification.category).toEqual(request.category);
+    expect(response.notification.category.value).toEqual(request.category);
     expect(response.notification.createdAt).toBeInstanceOf(Date);
   });
 });
