@@ -47,3 +47,6 @@ tmp/*
 .docker/mongodb/dbdata
 .docker/mongodb/dbconfig
 .docker/postgresql/dbdata
+
+# Prisma
+prisma/*.db
