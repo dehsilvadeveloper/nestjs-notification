@@ -6,7 +6,7 @@ CREATE TABLE "notification" (
     "category" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "readAt" DATETIME,
-    "cancelledAt" DATETIME
+    "canceledAt" DATETIME
 );
 
 -- CreateIndex

@@ -1,5 +1,4 @@
 import { NotificationCategoryEnum } from '@shared/enums/notification-category.enum';
-//import { NotificationCategoryEnum } from '../../../shared/enums/notification-category.enum';
 
 export class Category {
   private readonly category: string;
