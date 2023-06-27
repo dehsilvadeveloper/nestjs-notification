@@ -3,9 +3,9 @@ import { NotificationCategoryEnum } from '@shared/enums/notification-category.en
 
 describe('Value Object Category', () => {
   it('should create', () => {
-    const content = new Category(NotificationCategoryEnum.social);
+    const category = new Category(NotificationCategoryEnum.social);
 
-    expect(content).toBeTruthy();
+    expect(category).toBeTruthy();
   });
 
   it('should not create without characters', () => {

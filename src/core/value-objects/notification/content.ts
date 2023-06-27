@@ -5,7 +5,7 @@ export class Content {
     const isValidLength = this.validateContentLength(content);
 
     if (!isValidLength) {
-      throw new Error('Content must be between 1 and 255 characters');
+      throw new Error('Content must be between 3 and 255 characters');
     }
 
     this.content = content;
@@ -16,6 +16,6 @@ export class Content {
   }
 
   private validateContentLength(content: string): boolean {
-    return content.length > 0 && content.length <= 255;
+    return content.length > 3 && content.length <= 255;
   }
 }
