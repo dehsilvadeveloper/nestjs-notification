@@ -38,4 +38,12 @@ export class NotificationPrismaRepository implements NotificationRepositoryInter
 
     return notification;
   }
+
+  async countByRecipientId(recipientId: string): Promise<number> {
+    const count = await this.prismaService.notification.count({
+      where: { recipientId },
+    });
+
+    return count;
+  }
 }
