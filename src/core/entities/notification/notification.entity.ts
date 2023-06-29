@@ -6,9 +6,9 @@ import { Content } from '@core/value-objects/notification/content';
 export interface NotificationProps {
   content: Content;
   category: Category;
-  readAt?: Date | null;
-  createdAt: Date;
   recipientId: string;
+  createdAt: Date;
+  readAt?: Date | null;
   canceledAt?: Date | null;
 }
 
@@ -45,24 +45,24 @@ export class NotificationEntity {
     return this.props.category;
   }
 
-  public set readAt(readAt: Date | null | undefined) {
-    this.props.readAt = readAt;
-  }
-
-  public get readAt(): Date | null | undefined {
-    return this.props.readAt;
-  }
-
-  public get createdAt(): Date {
-    return this.props.createdAt;
-  }
-
   public set recipientId(recipientId: string) {
     this.props.recipientId = recipientId;
   }
 
   public get recipientId(): string {
     return this.props.recipientId;
+  }
+
+  public get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  public set readAt(readAt: Date | null | undefined) {
+    this.props.readAt = readAt;
+  }
+
+  public get readAt(): Date | null | undefined {
+    return this.props.readAt;
   }
 
   public get canceledAt(): Date | null | undefined {

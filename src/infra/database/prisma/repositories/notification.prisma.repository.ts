@@ -15,4 +15,27 @@ export class NotificationPrismaRepository implements NotificationRepositoryInter
       data: notificationPrismaData,
     });
   }
+
+  async save(notification: NotificationEntity): Promise<void> {
+    const notificationPrismaData = NotificationPrismaMapper.toPrisma(notification);
+
+    await this.prismaService.notification.update({
+      where: { id: notification.id },
+      data: notificationPrismaData,
+    });
+  }
+
+  async findById(id: string): Promise<NotificationEntity | null> {
+    const notificationPrismaData = await this.prismaService.notification.findUnique({
+      where: { id },
+    });
+
+    if (!notificationPrismaData) {
+      return null;
+    }
+
+    const notification = NotificationPrismaMapper.toDomain(notificationPrismaData);
+
+    return notification;
+  }
 }

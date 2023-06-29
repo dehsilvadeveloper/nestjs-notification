@@ -1,4 +1,4 @@
-import { NotificationInMemoryRepository } from '../../infra/database/in-memory/repositories/notification.in-memory.repository';
+import { NotificationInMemoryRepository } from '@infra/database/in-memory/repositories/notification.in-memory.repository';
 import {
   SendNotificationUseCase,
   SendNotificationUseCaseRequest,
