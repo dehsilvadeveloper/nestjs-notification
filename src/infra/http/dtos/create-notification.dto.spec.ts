@@ -4,7 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { NotificationCategoryEnum } from '@shared/enums/notification-category.enum';
 import { CreateNotificationDto } from './create-notification.dto';
 
-describe('DTO Create Notification', () => {
+describe('DTO CreateNotificationDto', () => {
   it('should create', async () => {
     const receivedData = {
       content: 'You received a friendship solicitation.',
