@@ -3,7 +3,7 @@ import { Replace } from '@shared/helpers/replace';
 import { Category } from '@core/value-objects/notification/category';
 import { Content } from '@core/value-objects/notification/content';
 
-export interface NotificationProps {
+export interface NotificationEntityProps {
   content: Content;
   category: Category;
   recipientId: string;
@@ -13,10 +13,10 @@ export interface NotificationProps {
 }
 
 export class NotificationEntity {
-  private props: NotificationProps;
+  private props: NotificationEntityProps;
   private _id: string;
 
-  constructor(props: Replace<NotificationProps, { createdAt?: Date }>, id?: string) {
+  constructor(props: Replace<NotificationEntityProps, { createdAt?: Date }>, id?: string) {
     this._id = !id ? randomUUID() : id;
 
     this.props = {

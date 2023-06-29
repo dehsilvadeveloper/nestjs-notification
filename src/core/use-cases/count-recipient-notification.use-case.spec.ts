@@ -1,9 +1,9 @@
-import { NotificationEntity } from '@core/entities/notification/notification.entity';
 import { Category } from '@core/value-objects/notification/category';
 import { Content } from '@core/value-objects/notification/content';
 import { NotificationCategoryEnum } from '@shared/enums/notification-category.enum';
 import { NotificationInMemoryRepository } from '@infra/database/in-memory/repositories/notification.in-memory.repository';
 import { CountRecipientNotificationUseCase } from './count-recipient-notification.use-case';
+import { makeNotification } from '../../../test/factories/notification.factory';
 
 describe('Usecase CountRecipientNotificationUseCase', () => {
   it('should count notifications of a specific recipient', async () => {
@@ -12,16 +12,10 @@ describe('Usecase CountRecipientNotificationUseCase', () => {
       notificationRepository,
     );
 
-    await notificationRepository.create(
-      new NotificationEntity({
-        content: new Content('You received a friendship solicitation.'),
-        category: new Category(NotificationCategoryEnum.social),
-        recipientId: 'user-123',
-      }),
-    );
+    await notificationRepository.create(makeNotification({ recipientId: 'user-123' }));
 
     await notificationRepository.create(
-      new NotificationEntity({
+      makeNotification({
         content: new Content('You received a partnership solicitation.'),
         category: new Category(NotificationCategoryEnum.professional),
         recipientId: 'user-123',
@@ -29,7 +23,7 @@ describe('Usecase CountRecipientNotificationUseCase', () => {
     );
 
     await notificationRepository.create(
-      new NotificationEntity({
+      makeNotification({
         content: new Content('You received a partnership solicitation.'),
         category: new Category(NotificationCategoryEnum.professional),
         recipientId: 'user-456',
