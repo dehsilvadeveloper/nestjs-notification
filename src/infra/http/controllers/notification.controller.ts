@@ -4,9 +4,11 @@ import { ReadNotificationUseCase } from '@core/use-cases/read-notification.use-c
 import { UnreadNotificationUseCase } from '@core/use-cases/unread-notification.use-case';
 import { CancelNotificationUseCase } from '@core/use-cases/cancel-notification.use-case';
 import { CountRecipientNotificationUseCase } from '@core/use-cases/count-recipient-notification.use-case';
+import { GetRecipientNotificationUseCase } from '@core/use-cases/get-recipient-notification.use-case';
 import { CreateNotificationDto } from '@infra/http/dtos/create-notification.dto';
 import { NotificationViewModel } from '../view-models/notification.view-model';
 import { NotificationCountByRecipientViewModel } from '../view-models/notification-count-by-recipient.view-model';
+import { NotificationListByRecipientViewModel } from '../view-models/notification-list-by-recipient.view-model';
 
 @Controller('notifications')
 export class NotificationController {
@@ -16,6 +18,7 @@ export class NotificationController {
     private unreadNotificationUseCase: UnreadNotificationUseCase,
     private cancelNotificationUseCase: CancelNotificationUseCase,
     private countRecipientNotificationUseCase: CountRecipientNotificationUseCase,
+    private getRecipientNotificationUseCase: GetRecipientNotificationUseCase,
   ) {}
 
   @Post()
@@ -55,5 +58,18 @@ export class NotificationController {
     });
 
     return { count };
+  }
+
+  @Get('recipients/:recipientId')
+  async listByRecipientId(
+    @Param('recipientId') recipientId: string,
+  ): Promise<NotificationListByRecipientViewModel> {
+    const { notifications } = await this.getRecipientNotificationUseCase.execute({
+      recipientId,
+    });
+
+    return {
+      notifications: notifications.map(NotificationViewModel.toHttp),
+    };
   }
 }
