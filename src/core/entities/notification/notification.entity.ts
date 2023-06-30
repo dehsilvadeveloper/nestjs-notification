@@ -57,10 +57,6 @@ export class NotificationEntity {
     return this.props.createdAt;
   }
 
-  public set readAt(readAt: Date | null | undefined) {
-    this.props.readAt = readAt;
-  }
-
   public get readAt(): Date | null | undefined {
     return this.props.readAt;
   }

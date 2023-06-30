@@ -1,6 +1,6 @@
 import { NotificationInMemoryRepository } from '@infra/database/in-memory/repositories/notification.in-memory.repository';
 import { CancelNotificationUseCase } from './cancel-notification.use-case';
-import { makeNotification } from '../../../test/factories/notification.factory';
+import { makeNotification } from '@test/factories/notification.factory';
 import { NotificationNotFoundError } from '../errors/notification-not-found.error';
 
 describe('Usecase CancelNotificationUseCase', () => {

@@ -3,7 +3,7 @@ import { Content } from '@core/value-objects/notification/content';
 import { NotificationCategoryEnum } from '@shared/enums/notification-category.enum';
 import { NotificationInMemoryRepository } from '@infra/database/in-memory/repositories/notification.in-memory.repository';
 import { CountRecipientNotificationUseCase } from './count-recipient-notification.use-case';
-import { makeNotification } from '../../../test/factories/notification.factory';
+import { makeNotification } from '@test/factories/notification.factory';
 
 describe('Usecase CountRecipientNotificationUseCase', () => {
   it('should count notifications of a specific recipient', async () => {

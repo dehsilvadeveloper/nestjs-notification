@@ -1,6 +1,6 @@
 import { NotificationInMemoryRepository } from '@infra/database/in-memory/repositories/notification.in-memory.repository';
 import { GetRecipientNotificationUseCase } from './get-recipient-notification.use-case';
-import { makeNotification } from '../../../test/factories/notification.factory';
+import { makeNotification } from '@test/factories/notification.factory';
 
 describe('Usecase GetRecipientNotificationUseCase', () => {
   it('should get notifications of specific recipient', async () => {
