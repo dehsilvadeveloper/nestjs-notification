@@ -4,6 +4,7 @@ import { ReadNotificationUseCase } from '@core/use-cases/read-notification.use-c
 import { UnreadNotificationUseCase } from '@core/use-cases/unread-notification.use-case';
 import { CancelNotificationUseCase } from '@core/use-cases/cancel-notification.use-case';
 import { ListNotificationUseCase } from '@core/use-cases/list-notification.use-case';
+import { GetNotificationUseCase } from '@core/use-cases/get-notification.use-case';
 import { CountRecipientNotificationUseCase } from '@core/use-cases/count-recipient-notification.use-case';
 import { GetRecipientNotificationUseCase } from '@core/use-cases/get-recipient-notification.use-case';
 import { CreateNotificationDto } from '@infra/http/dtos/create-notification.dto';
@@ -21,6 +22,7 @@ export class NotificationController {
     private unreadNotificationUseCase: UnreadNotificationUseCase,
     private cancelNotificationUseCase: CancelNotificationUseCase,
     private listNotificationUseCase: ListNotificationUseCase,
+    private getNotificationUseCase: GetNotificationUseCase,
     private countRecipientNotificationUseCase: CountRecipientNotificationUseCase,
     private getRecipientNotificationUseCase: GetRecipientNotificationUseCase,
   ) {}
@@ -60,6 +62,17 @@ export class NotificationController {
     return {
       notifications: notifications.map(NotificationViewModel.toHttp),
     };
+  }
+
+  @Get(':id')
+  async show(@Param('id') id: string) {
+    const { notification } = await this.getNotificationUseCase.execute({
+      id,
+    });
+
+    const notificationData = !notification ? null : NotificationViewModel.toHttp(notification);
+
+    return { notification: notificationData };
   }
 
   @Get('recipients/:recipientId/count')
