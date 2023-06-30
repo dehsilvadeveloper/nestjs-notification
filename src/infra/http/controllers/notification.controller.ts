@@ -1,5 +1,6 @@
 import { Controller, Param, Body, Post, Patch } from '@nestjs/common';
 import { SendNotificationUseCase } from '@core/use-cases/send-notification.use-case';
+import { ReadNotificationUseCase } from '@core/use-cases/read-notification.use-case';
 import { CancelNotificationUseCase } from '@core/use-cases/cancel-notification.use-case';
 import { CreateNotificationDto } from '@infra/http/dtos/create-notification.dto';
 import { NotificationViewModel } from '../view-models/notification.view-model';
@@ -8,6 +9,7 @@ import { NotificationViewModel } from '../view-models/notification.view-model';
 export class NotificationController {
   constructor(
     private sendNotificationUseCase: SendNotificationUseCase,
+    private readNotificationUseCase: ReadNotificationUseCase,
     private cancelNotificationUseCase: CancelNotificationUseCase,
   ) {}
 
@@ -22,6 +24,11 @@ export class NotificationController {
     });
 
     return { notification: NotificationViewModel.toHttp(notification) };
+  }
+
+  @Patch(':id/read')
+  async read(@Param('id') id: string) {
+    await this.readNotificationUseCase.execute({ id });
   }
 
   @Patch(':id/cancel')
