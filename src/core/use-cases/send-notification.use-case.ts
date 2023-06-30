@@ -16,7 +16,7 @@ export interface SendNotificationUseCaseResponse {
 
 @Injectable()
 export class SendNotificationUseCase {
-  constructor(private readonly notificationsRepository: NotificationRepositoryInterface) {}
+  constructor(private notificationsRepository: NotificationRepositoryInterface) {}
 
   async execute(request: SendNotificationUseCaseRequest): Promise<SendNotificationUseCaseResponse> {
     const { recipientId, content, category } = request;

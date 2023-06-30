@@ -46,4 +46,14 @@ export class NotificationPrismaRepository implements NotificationRepositoryInter
 
     return count;
   }
+
+  async findManyByRecipientId(recipientId: string): Promise<NotificationEntity[]> {
+    const notificationPrismaData = await this.prismaService.notification.findMany({
+      where: { recipientId },
+    });
+
+    const notifications = notificationPrismaData.map(NotificationPrismaMapper.toDomain);
+
+    return notifications;
+  }
 }

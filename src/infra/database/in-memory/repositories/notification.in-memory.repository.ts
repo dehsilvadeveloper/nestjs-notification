@@ -28,7 +28,7 @@ export class NotificationInMemoryRepository implements NotificationRepositoryInt
     return filtered.length;
   }
 
-  async findByRecipientId(recipientId: string): Promise<NotificationEntity[]> {
+  async findManyByRecipientId(recipientId: string): Promise<NotificationEntity[]> {
     return this.notifications.filter(n => n.recipientId === recipientId);
   }
 }
