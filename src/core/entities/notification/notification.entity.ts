@@ -17,7 +17,7 @@ export class NotificationEntity {
   private _id: string;
 
   constructor(props: Replace<NotificationEntityProps, { createdAt?: Date }>, id?: string) {
-    this._id = !id ? randomUUID() : id;
+    this._id = id ?? randomUUID();
 
     this.props = {
       ...props,

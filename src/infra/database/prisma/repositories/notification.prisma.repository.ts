@@ -6,7 +6,7 @@ import { NotificationPrismaMapper } from '@infra/database/prisma/mappers/notific
 
 @Injectable()
 export class NotificationPrismaRepository implements NotificationRepositoryInterface {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private prismaService: PrismaService) {}
 
   async create(notification: NotificationEntity): Promise<void> {
     const notificationPrismaData = NotificationPrismaMapper.toPrisma(notification);
