@@ -5,6 +5,7 @@ import { SendNotificationUseCase } from '@core/use-cases/send-notification.use-c
 import { ReadNotificationUseCase } from '@core/use-cases/read-notification.use-case';
 import { UnreadNotificationUseCase } from '@core/use-cases/unread-notification.use-case';
 import { CancelNotificationUseCase } from '@core/use-cases/cancel-notification.use-case';
+import { ListNotificationUseCase } from '@core/use-cases/list-notification.use-case';
 import { CountRecipientNotificationUseCase } from '@core/use-cases/count-recipient-notification.use-case';
 import { GetRecipientNotificationUseCase } from '@core/use-cases/get-recipient-notification.use-case';
 
@@ -16,6 +17,7 @@ import { GetRecipientNotificationUseCase } from '@core/use-cases/get-recipient-n
     ReadNotificationUseCase,
     UnreadNotificationUseCase,
     CancelNotificationUseCase,
+    ListNotificationUseCase,
     CountRecipientNotificationUseCase,
     GetRecipientNotificationUseCase,
   ],

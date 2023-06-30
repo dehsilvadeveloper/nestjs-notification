@@ -25,6 +25,14 @@ export class NotificationPrismaRepository implements NotificationRepositoryInter
     });
   }
 
+  async findAll(): Promise<NotificationEntity[]> {
+    const notificationPrismaData = await this.prismaService.notification.findMany();
+
+    const notifications = notificationPrismaData.map(NotificationPrismaMapper.toDomain);
+
+    return notifications;
+  }
+
   async findById(id: string): Promise<NotificationEntity | null> {
     const notificationPrismaData = await this.prismaService.notification.findUnique({
       where: { id },
