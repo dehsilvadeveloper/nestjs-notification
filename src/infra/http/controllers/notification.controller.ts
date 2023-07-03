@@ -10,9 +10,6 @@ import { GetRecipientNotificationUseCase } from '@core/use-cases/get-recipient-n
 import { CreateNotificationDto } from '@infra/http/dtos/create-notification.dto';
 import { NotificationDto } from '@infra/http/dtos/notification.dto';
 import { NotificationViewModel } from '../view-models/notification.view-model';
-import { NotificationListViewModel } from '../view-models/notification-list.view-model';
-import { NotificationCountByRecipientViewModel } from '../view-models/notification-count-by-recipient.view-model';
-import { NotificationListByRecipientViewModel } from '../view-models/notification-list-by-recipient.view-model';
 
 @Controller('notifications')
 export class NotificationController {
@@ -56,7 +53,7 @@ export class NotificationController {
   }
 
   @Get()
-  async list(): Promise<NotificationListViewModel> {
+  async list(): Promise<{ notifications: NotificationDto[] }> {
     const { notifications } = await this.listNotificationUseCase.execute();
 
     return {
@@ -65,7 +62,7 @@ export class NotificationController {
   }
 
   @Get(':id')
-  async show(@Param('id') id: string) {
+  async show(@Param('id') id: string): Promise<{ notification: NotificationDto | null }> {
     const { notification } = await this.getNotificationUseCase.execute({
       id,
     });
@@ -76,20 +73,18 @@ export class NotificationController {
   }
 
   @Get('recipients/:recipientId/count')
-  async countByRecipientId(
-    @Param('recipientId') recipientId: string,
-  ): Promise<NotificationCountByRecipientViewModel> {
+  async countByRecipientId(@Param('recipientId') recipientId: string): Promise<{ total: number }> {
     const { count } = await this.countRecipientNotificationUseCase.execute({
       recipientId,
     });
 
-    return { count };
+    return { total: count };
   }
 
   @Get('recipients/:recipientId')
   async listByRecipientId(
     @Param('recipientId') recipientId: string,
-  ): Promise<NotificationListByRecipientViewModel> {
+  ): Promise<{ notifications: NotificationDto[] }> {
     const { notifications } = await this.getRecipientNotificationUseCase.execute({
       recipientId,
     });
