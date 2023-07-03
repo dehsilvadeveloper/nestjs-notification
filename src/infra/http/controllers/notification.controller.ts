@@ -1,4 +1,14 @@
-import { Controller, Param, Body, Get, Post, Patch, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  UseInterceptors,
+  Param,
+  Body,
+  Get,
+  Post,
+  Patch,
+  NotFoundException,
+} from '@nestjs/common';
+import { NotificationNotFoundErrorInterceptor } from '../interceptors/notification-not-found-error.interceptor';
 import { SendNotificationUseCase } from '@core/use-cases/send-notification.use-case';
 import { ReadNotificationUseCase } from '@core/use-cases/read-notification.use-case';
 import { UnreadNotificationUseCase } from '@core/use-cases/unread-notification.use-case';
@@ -12,6 +22,7 @@ import { NotificationDto } from '@infra/http/dtos/notification.dto';
 import { NotificationViewModel } from '../view-models/notification.view-model';
 
 @Controller('notifications')
+@UseInterceptors(NotificationNotFoundErrorInterceptor)
 export class NotificationController {
   constructor(
     private sendNotificationUseCase: SendNotificationUseCase,
