@@ -1,4 +1,4 @@
-import { Controller, Param, Body, Get, Post, Patch } from '@nestjs/common';
+import { Controller, Param, Body, Get, Post, Patch, NotFoundException } from '@nestjs/common';
 import { SendNotificationUseCase } from '@core/use-cases/send-notification.use-case';
 import { ReadNotificationUseCase } from '@core/use-cases/read-notification.use-case';
 import { UnreadNotificationUseCase } from '@core/use-cases/unread-notification.use-case';
@@ -62,14 +62,16 @@ export class NotificationController {
   }
 
   @Get(':id')
-  async show(@Param('id') id: string): Promise<{ notification: NotificationDto | null }> {
+  async show(@Param('id') id: string): Promise<{ notification: NotificationDto }> {
     const { notification } = await this.getNotificationUseCase.execute({
       id,
     });
 
-    const notificationData = !notification ? null : NotificationViewModel.toHttp(notification);
+    if (!notification) {
+      throw new NotFoundException('Notification not found');
+    }
 
-    return { notification: notificationData };
+    return { notification: NotificationViewModel.toHttp(notification) };
   }
 
   @Get('recipients/:recipientId/count')
