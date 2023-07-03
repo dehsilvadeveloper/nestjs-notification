@@ -3,7 +3,6 @@ import {
   NestInterceptor,
   ExecutionContext,
   NotFoundException,
-  BadRequestException,
   CallHandler,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
@@ -19,7 +18,7 @@ export class NotificationNotFoundErrorInterceptor implements NestInterceptor {
           throw new NotFoundException(error.message);
         }
 
-        throw new BadRequestException(error.message);
+        throw error;
       }),
     );
   }
