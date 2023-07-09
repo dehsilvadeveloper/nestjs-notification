@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
+import { HealthCheckController } from './controllers/healthcheck.controller';
 import { NotificationController } from './controllers/notification.controller';
 import { SendNotificationUseCase } from '@core/use-cases/send-notification.use-case';
 import { ReadNotificationUseCase } from '@core/use-cases/read-notification.use-case';
@@ -12,7 +13,7 @@ import { GetRecipientNotificationUseCase } from '@core/use-cases/get-recipient-n
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [NotificationController],
+  controllers: [HealthCheckController, NotificationController],
   providers: [
     SendNotificationUseCase,
     ReadNotificationUseCase,

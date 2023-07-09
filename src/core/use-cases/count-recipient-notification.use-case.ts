@@ -11,7 +11,7 @@ export interface CountRecipientNotificationUseCaseResponse {
 
 @Injectable()
 export class CountRecipientNotificationUseCase {
-  constructor(private notificationRepository: NotificationRepositoryInterface) {}
+  constructor(private readonly notificationRepository: NotificationRepositoryInterface) {}
 
   async execute(
     request: CountRecipientNotificationUseCaseRequest,

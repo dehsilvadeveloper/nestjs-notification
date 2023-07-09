@@ -8,7 +8,7 @@ export interface UnreadNotificationUseCaseRequest {
 
 @Injectable()
 export class UnreadNotificationUseCase {
-  constructor(private notificationRepository: NotificationRepositoryInterface) {}
+  constructor(private readonly notificationRepository: NotificationRepositoryInterface) {}
 
   async execute(request: UnreadNotificationUseCaseRequest): Promise<void> {
     const { id } = request;

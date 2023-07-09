@@ -8,7 +8,7 @@ export interface CancelNotificationUseCaseRequest {
 
 @Injectable()
 export class CancelNotificationUseCase {
-  constructor(private notificationsRepository: NotificationRepositoryInterface) {}
+  constructor(private readonly notificationsRepository: NotificationRepositoryInterface) {}
 
   async execute(request: CancelNotificationUseCaseRequest): Promise<void> {
     const { id } = request;

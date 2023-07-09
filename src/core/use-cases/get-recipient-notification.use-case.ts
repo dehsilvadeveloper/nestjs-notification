@@ -12,7 +12,7 @@ export interface GetRecipientNotificationResponse {
 
 @Injectable()
 export class GetRecipientNotificationUseCase {
-  constructor(private notificationRepository: NotificationRepositoryInterface) {}
+  constructor(private readonly notificationRepository: NotificationRepositoryInterface) {}
 
   async execute(
     request: GetRecipientNotificationRequest,

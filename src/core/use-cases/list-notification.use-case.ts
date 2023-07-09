@@ -8,7 +8,7 @@ export interface ListNotificationResponse {
 
 @Injectable()
 export class ListNotificationUseCase {
-  constructor(private notificationRepository: NotificationRepositoryInterface) {}
+  constructor(private readonly notificationRepository: NotificationRepositoryInterface) {}
 
   async execute(): Promise<ListNotificationResponse> {
     const notifications = await this.notificationRepository.findAll();
