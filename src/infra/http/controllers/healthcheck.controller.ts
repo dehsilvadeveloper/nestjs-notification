@@ -1,7 +1,10 @@
 import { Response } from 'express';
 import { Controller, Res, Get, HttpStatus } from '@nestjs/common';
 
-@Controller('healthcheck')
+@Controller({
+  path: 'healthcheck',
+  version: '1',
+})
 export class HealthCheckController {
   @Get()
   healthCheck(@Res() response: Response) {

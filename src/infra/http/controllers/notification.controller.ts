@@ -1,5 +1,6 @@
 import {
   Controller,
+  Version,
   UseInterceptors,
   Param,
   Body,
@@ -36,6 +37,7 @@ export class NotificationController {
     private readonly getRecipientNotificationUseCase: GetRecipientNotificationUseCase,
   ) {}
 
+  @Version('1')
   @Post()
   @Header('content-type', 'application/json')
   async create(@Body() body: CreateNotificationDto): Promise<{ notification: NotificationDto }> {
@@ -50,6 +52,7 @@ export class NotificationController {
     return { notification: NotificationViewModel.toHttp(notification) };
   }
 
+  @Version('1')
   @Patch(':id/read')
   @Header('content-type', 'application/json')
   async read(@Param('id') id: string): Promise<{ message: string }> {
@@ -58,6 +61,7 @@ export class NotificationController {
     return { message: 'The notification was marked as read.' };
   }
 
+  @Version('1')
   @Patch(':id/unread')
   @Header('content-type', 'application/json')
   async unread(@Param('id') id: string): Promise<{ message: string }> {
@@ -66,6 +70,7 @@ export class NotificationController {
     return { message: 'The notification was marked as unread.' };
   }
 
+  @Version('1')
   @Patch(':id/cancel')
   @Header('content-type', 'application/json')
   async cancel(@Param('id') id: string): Promise<{ message: string }> {
@@ -74,6 +79,7 @@ export class NotificationController {
     return { message: 'The notification was marked as cancelled.' };
   }
 
+  @Version('1')
   @Get()
   @Header('content-type', 'application/json')
   async list(): Promise<{ notifications: NotificationDto[] }> {
@@ -84,6 +90,7 @@ export class NotificationController {
     };
   }
 
+  @Version('1')
   @Get(':id')
   @Header('content-type', 'application/json')
   async show(@Param('id') id: string): Promise<{ notification: NotificationDto }> {
@@ -98,6 +105,7 @@ export class NotificationController {
     return { notification: NotificationViewModel.toHttp(notification) };
   }
 
+  @Version('1')
   @Get('recipients/:recipientId/count')
   @Header('content-type', 'application/json')
   async countByRecipientId(@Param('recipientId') recipientId: string): Promise<{ total: number }> {
@@ -108,6 +116,7 @@ export class NotificationController {
     return { total: count };
   }
 
+  @Version('1')
   @Get('recipients/:recipientId')
   @Header('content-type', 'application/json')
   async listByRecipientId(
