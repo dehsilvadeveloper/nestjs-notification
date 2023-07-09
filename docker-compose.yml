@@ -12,7 +12,7 @@ services:
       # Using anonymous volume to prevent the node_modules existing in the container to be overridden by the local version
       - /usr/src/app/node_modules
     ports:
-      - ${APP_PORT}:3000
+      - ${APP_PORT}:${APP_INTERNAL_PORT}
       - 9229:9229
     command: npm run start:dev
     environment:
