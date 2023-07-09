@@ -3,6 +3,7 @@ import {
   UseInterceptors,
   Param,
   Body,
+  Header,
   Get,
   Post,
   Patch,
@@ -25,17 +26,18 @@ import { NotificationViewModel } from '../view-models/notification.view-model';
 @UseInterceptors(NotificationNotFoundErrorInterceptor)
 export class NotificationController {
   constructor(
-    private sendNotificationUseCase: SendNotificationUseCase,
-    private readNotificationUseCase: ReadNotificationUseCase,
-    private unreadNotificationUseCase: UnreadNotificationUseCase,
-    private cancelNotificationUseCase: CancelNotificationUseCase,
-    private listNotificationUseCase: ListNotificationUseCase,
-    private getNotificationUseCase: GetNotificationUseCase,
-    private countRecipientNotificationUseCase: CountRecipientNotificationUseCase,
-    private getRecipientNotificationUseCase: GetRecipientNotificationUseCase,
+    private readonly sendNotificationUseCase: SendNotificationUseCase,
+    private readonly readNotificationUseCase: ReadNotificationUseCase,
+    private readonly unreadNotificationUseCase: UnreadNotificationUseCase,
+    private readonly cancelNotificationUseCase: CancelNotificationUseCase,
+    private readonly listNotificationUseCase: ListNotificationUseCase,
+    private readonly getNotificationUseCase: GetNotificationUseCase,
+    private readonly countRecipientNotificationUseCase: CountRecipientNotificationUseCase,
+    private readonly getRecipientNotificationUseCase: GetRecipientNotificationUseCase,
   ) {}
 
   @Post()
+  @Header('content-type', 'application/json')
   async create(@Body() body: CreateNotificationDto): Promise<{ notification: NotificationDto }> {
     const { recipientId, content, category } = body;
 
@@ -49,21 +51,31 @@ export class NotificationController {
   }
 
   @Patch(':id/read')
-  async read(@Param('id') id: string): Promise<void> {
+  @Header('content-type', 'application/json')
+  async read(@Param('id') id: string): Promise<{ message: string }> {
     await this.readNotificationUseCase.execute({ id });
+
+    return { message: 'The notification was marked as read.' };
   }
 
   @Patch(':id/unread')
-  async unread(@Param('id') id: string): Promise<void> {
+  @Header('content-type', 'application/json')
+  async unread(@Param('id') id: string): Promise<{ message: string }> {
     await this.unreadNotificationUseCase.execute({ id });
+
+    return { message: 'The notification was marked as unread.' };
   }
 
   @Patch(':id/cancel')
-  async cancel(@Param('id') id: string): Promise<void> {
+  @Header('content-type', 'application/json')
+  async cancel(@Param('id') id: string): Promise<{ message: string }> {
     await this.cancelNotificationUseCase.execute({ id });
+
+    return { message: 'The notification was marked as cancelled.' };
   }
 
   @Get()
+  @Header('content-type', 'application/json')
   async list(): Promise<{ notifications: NotificationDto[] }> {
     const { notifications } = await this.listNotificationUseCase.execute();
 
@@ -73,6 +85,7 @@ export class NotificationController {
   }
 
   @Get(':id')
+  @Header('content-type', 'application/json')
   async show(@Param('id') id: string): Promise<{ notification: NotificationDto }> {
     const { notification } = await this.getNotificationUseCase.execute({
       id,
@@ -86,6 +99,7 @@ export class NotificationController {
   }
 
   @Get('recipients/:recipientId/count')
+  @Header('content-type', 'application/json')
   async countByRecipientId(@Param('recipientId') recipientId: string): Promise<{ total: number }> {
     const { count } = await this.countRecipientNotificationUseCase.execute({
       recipientId,
@@ -95,6 +109,7 @@ export class NotificationController {
   }
 
   @Get('recipients/:recipientId')
+  @Header('content-type', 'application/json')
   async listByRecipientId(
     @Param('recipientId') recipientId: string,
   ): Promise<{ notifications: NotificationDto[] }> {
