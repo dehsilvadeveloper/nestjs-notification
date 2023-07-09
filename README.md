@@ -45,13 +45,19 @@ Next development actions
 * [X] Adjust dependencies import (tsconfig paths not working properly in jest tests)
 * [X] Implement mappers (from Prisma to Entity, from Entity to Prisma)
 * [X] Implement view models on the http layer
-* [ ] Implement create notification flow (controller, use-case, etc)
-* [ ] Implement cancel notification flow (controller, use-case, etc)
-* [ ] Implement read notification flow (controller, use-case, etc)
-* [ ] Implement unread notification flow (controller, use-case, etc)
-* [ ] Implement recipient received notifications count flow (controller, use-case, etc)
-* [ ] Implement recipient received notifications list flow (controller, use-case, etc)
+* [X] Implement create notification flow (controller, use-case, etc)
+* [X] Implement cancel notification flow (controller, use-case, etc)
+* [X] Implement read notification flow (controller, use-case, etc)
+* [X] Implement unread notification flow (controller, use-case, etc)
+* [X] Implement recipient received notifications count flow (controller, use-case, etc)
+* [X] Implement recipient received notifications list flow (controller, use-case, etc)
+* [X] Implement list all notifications flow (controller, use-case, etc)
+* [X] Implement get specific notification flow (controller, use-case, etc)
+* [ ] Adding api name and api version to the endpoints
+* [ ] Create and apply configurations files (Application, Api, Database, Redis)
+* [ ] Saving counter of sent notifications on Redis
+* [ ] Saving counter of read notifications on Redis
 * [ ] Adjust jest tests for better performance
-* [ ] Implement health check route
+* [X] Implement health check route
 * [ ] Implement support for multiple databases, with default being set through environment variable
 * [ ] Finish documentation
