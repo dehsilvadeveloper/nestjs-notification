@@ -54,7 +54,7 @@ Next development actions
 * [X] Implement recipient received notifications list flow (controller, use-case, etc)
 * [X] Implement list all notifications flow (controller, use-case, etc)
 * [X] Implement get specific notification flow (controller, use-case, etc)
-* [ ] Adding api name and api version to the endpoints
+* [X] Adding api name and api version to the endpoints
 * [ ] Create and apply configurations files (Application, Api, Database, Redis)
 * [ ] Saving counter of sent notifications on Redis
 * [ ] Saving counter of read notifications on Redis
