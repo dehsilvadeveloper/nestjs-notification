@@ -35,6 +35,7 @@ The project was created to learn development with NestJS.
 
 * [Getting Started](./docs/getting_started.md)
 * [Folder Structure](./docs/folder_structure.md)
+* [Api Versioning](./docs/api_versioning.md)
 * [Available NPM Scripts](./docs/available_npm_scripts.md)
 * [Available Make Scripts](./docs/available_make_scripts.md)
 
