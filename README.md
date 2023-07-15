@@ -60,5 +60,4 @@ Next development actions
 * [ ] Saving counter of read notifications on Redis
 * [ ] Adjust jest tests for better performance
 * [X] Implement health check route
-* [ ] Implement support for multiple databases, with default being set through environment variable
 * [ ] Finish documentation
