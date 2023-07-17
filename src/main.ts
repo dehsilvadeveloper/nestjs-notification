@@ -8,7 +8,7 @@ import { corsConfig } from './infra/config/cors.config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.setGlobalPrefix(apiConfig.name);
+  app.setGlobalPrefix(apiConfig.globalPrefix);
   app.enableVersioning({
     type: VersioningType.URI,
     defaultVersion: apiConfig.defaultVersion,
