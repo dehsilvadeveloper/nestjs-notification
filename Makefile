@@ -27,7 +27,7 @@ build: ## Build images used on the Docker containers
 	@echo "$(COLOR_LIGHT_CYAN)All containers are build.$(COLOR_RESET)"
 
 up: ## Get up all Docker containers
-	@echo "$(COLOR_BLUE)Getting up all containers.$(COLOR_RESET)"
+	@echo "$(COLOR_BLUE)Getting up all containers, recreating anonymous volumes instead of retrieving data from the previous containers.$(COLOR_RESET)"
 	@docker-compose -f ./docker-compose.yml up -V
 	@echo "$(COLOR_BLUE)All containers are up.$(COLOR_RESET)"
 	@echo "$(COLOR_YELLOW)Application is running on $(APP_URL):$(APP_PORT)$(COLOR_RESET)"
