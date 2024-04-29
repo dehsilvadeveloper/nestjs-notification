@@ -43,7 +43,8 @@ tmp/*
 .env
 
 # Docker
-.docker/mysql/dbdata
+.docker/mysql/dbdata/*
+!.docker/mysql/dbdata/.gitkeep 
 .docker/mongodb/dbdata
 .docker/mongodb/dbconfig
 .docker/postgresql/dbdata

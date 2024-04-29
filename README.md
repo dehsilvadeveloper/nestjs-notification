@@ -2,20 +2,21 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
-# NestJs Notification  🔥 🚀
+# NestJS Notification  🔥 🚀
 
-This is a NestJS v9.x application to control notifications using a Dockerized environment. 
+This is a NestJS v9.x api to emulate a notification system, manipulating the notifications data through defined endpoints. No real notifications are dispatched, the application is just for controlling the notifications history.
 
-The project was created to learn development with NestJS.
+The project was created for refinement of NestJS knowledge. It also work as a skills showcase.
 
 ## Build with
 
 | Name       | Version  |
 | ---------- | -------- |
 | NestJs | v9.x |
-| NodeJs | v19.8.x |
-| Typescript | v5.0.x |
-| NPM | v9.5.x |
+| NodeJs | v19.8.x + |
+| Typescript | v4.7.x + |
+| NPM | v9.5.x + |
+| Prisma | v4.15.x + |
 | Docker | v20.10.x |
 | Docker Compose | v3.8.x |
 | Redis | v6.2.x |
@@ -25,11 +26,13 @@ The project was created to learn development with NestJS.
 
 ## Objectives
 
-* NestJs learning
+* Use a Dockerized environment
 * Use concepts of Repository Pattern
 * Use concepts of SOLID
 * Use concepts of Clean Architecture
-* Achieve support for multiple databases types
+* Use Prisma for database modelling and migration
+* Use Data Transfer Objects (DTOs) to transport groups of data between the application layers and to validate input data
+* Create tests for the application using JEST
 
 ## Docs
 

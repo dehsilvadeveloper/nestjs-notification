@@ -12,14 +12,20 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "prisma:studio": "npx prisma studio",
-    "prisma:migrate": "npx prisma migrate dev",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "prisma:generate": "npx prisma generate",
+    "prisma:studio": "npx prisma studio",
+    "prisma:make:migration": "npx prisma migrate create",
+    "prisma:migrate:run-dev": "npx prisma migrate dev",
+    "prisma:migrate:run-prod": "npx prisma migrate deploy",
+    "prisma:migrate:reset": "npx prisma migrate reset --skip-seed",
+    "prisma:migrate:status": "npx prisma migrate status",
+    "prisma:seed": "npx prisma db seed" 
   },
   "dependencies": {
     "@nestjs/common": "^9.4.1",

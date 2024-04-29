@@ -5,7 +5,7 @@ import { NotificationCategoryEnum } from '@shared/enums/notification-category.en
 import { CreateNotificationDto } from './create-notification.dto';
 
 describe('DTO CreateNotificationDto', () => {
-  it('should create', async () => {
+  it('should pass validation', async () => {
     const receivedData = {
       content: 'You received a friendship solicitation.',
       category: NotificationCategoryEnum.social,
@@ -18,7 +18,7 @@ describe('DTO CreateNotificationDto', () => {
     expect(errors.length).toBe(0);
   });
 
-  it('should not create using content without characters', async () => {
+  it('should fail validation using content without characters', async () => {
     const receivedData = {
       content: '',
       category: NotificationCategoryEnum.social,
@@ -34,7 +34,7 @@ describe('DTO CreateNotificationDto', () => {
     expect(stringifiedErrors).toContain('content should not be empty');
   });
 
-  it('should not create using content with less than 3 characters', async () => {
+  it('should fail validation using content with less than 3 characters', async () => {
     const receivedData = {
       content: 'a',
       category: NotificationCategoryEnum.social,
@@ -49,7 +49,7 @@ describe('DTO CreateNotificationDto', () => {
     expect(stringifiedErrors).toContain('content must be longer than or equal to 3 characters');
   });
 
-  it('should not create using category with invalid name', async () => {
+  it('should fail validation using category with invalid name', async () => {
     const receivedData = {
       content: 'You received a friendship solicitation.',
       category: 'soccer',
@@ -68,7 +68,7 @@ describe('DTO CreateNotificationDto', () => {
     );
   });
 
-  it('should not create using recipientId with invalid UUID', async () => {
+  it('should fail validation using recipientId with invalid UUID', async () => {
     const receivedData = {
       content: 'You received a friendship solicitation.',
       category: NotificationCategoryEnum.social,

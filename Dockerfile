@@ -32,7 +32,7 @@ RUN npm cache clean --force
 COPY --chown=node:node . .
 
 # Generate Prisma files
-RUN npx prisma generate
+RUN npm run prisma:generate
 
 # Build the app
 RUN npm run build
